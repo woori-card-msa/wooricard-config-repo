@@ -1,0 +1,50 @@
+spring:
+  datasource:
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  security: # TODO: API gateway의 access token 구현이 완료되면 제거 
+    user:
+      name: card
+      password: card123
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true  
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.80:8761/eureka/
+  instance:
+    # 각자의 컴퓨터 이름을 인식하지 못할 수 있으므로 IP 주소 기반 등록 권장
+    prefer-ip-address: true 
+
+# 은행 서비스 설정
+bank:
+  service:
+    url: http://localhost:8080 #TODO: 은행 서버는 아직 구현되지 않았으므로 localhost로 임시 설정
+
+# Swagger/OpenAPI 설정
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: false # 디버깅 시 true로 설정 
+    doc-expansion: none
