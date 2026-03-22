@@ -1,7 +1,7 @@
 spring:
   datasource:
-    username: root
-    password: 1234
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -28,7 +28,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.1.80:8761/eureka/
+      defaultZone: ${EUREKA_SERVER_URL}
   instance:
     # 각자의 컴퓨터 이름을 인식하지 못할 수 있으므로 IP 주소 기반 등록 권장
     prefer-ip-address: true 
@@ -36,7 +36,7 @@ eureka:
 # 은행 서비스 설정
 bank:
   service:
-    url: http://localhost:8080 #TODO: 은행 서버는 아직 구현되지 않았으므로 localhost로 임시 설정
+    url: http://wooricard-bank-server #TODO: 은행 서버는 아직 구현되지 않았으므로 localhost로 임시 설정
 
 # Swagger/OpenAPI 설정
 springdoc:
